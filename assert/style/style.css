@@ -1,0 +1,71 @@
+
+
+/**
+*   首页
+*/
+
+.home-header{
+    position: relative;
+    z-index: 999;
+    background-color:#343a40;
+}
+.home-top{
+    height:35px;
+    line-height:35px;
+    color:rgb(102,102,102);
+    border-bottom:1px solid #4b4b4b;
+}
+.site-name{
+
+}
+.home-top ul li{
+    padding:0 1em;
+}
+.home-top ul li:nth-of-type(2){
+    display:block;
+    padding:0 1em;
+    border-left:1px solid #666;
+    border-right:1px solid #666;
+}
+
+.home-menu{
+    height:90px;
+}
+.logo{
+}
+.home-menu{
+    position:relative;
+}
+.home-menu ul li{
+    position:relative;
+    padding-top:20px;
+}
+.home-menu .navbar-form{
+    padding-top:20px;
+}
+.search-input{
+    border: none;
+    background: #343a40;
+    border-bottom: 2px solid #555;
+}
+.search-input:focus{
+    outline: none;
+    border: none;
+    background: #343a40;
+    border-bottom: 2px solid #555;
+}
+
+
+
+.banner{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    top: -120px;
+}
+.banner img{
+    height:100vh !important;
+    width:100vw !important;
+}
+
+

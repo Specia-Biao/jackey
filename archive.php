@@ -1,0 +1,75 @@
+
+
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2017/8/31
+ * Time: 16:38
+ */
+
+//产品
+$product=[];
+$product_cats=get_categories("child_of=4");
+array_push($product,"4");
+foreach ($product_cats as $product_cat){
+    array_push($product,$product_cat->cat_ID);
+}
+//新闻
+$news=[];
+$news_cats=get_categories("child_of=15");
+array_push($news,"15");
+foreach ($news_cats as $news_cat){
+    array_push($news,$news_cat->cat_ID);
+}
+
+//关于
+$about=[];
+$about_cats=get_categories("child_of=9");
+array_push($about,"9");
+foreach ($about_cats as $about_cat){
+    array_push($about,$about_cat->cat_ID);
+}
+
+//产品解决方案
+$reslove=[];
+$reslove_cats=get_categories("child_of=11");
+array_push($reslove,"11");
+foreach ($reslove_cats as $reslove_cat){
+    array_push($reslove,$reslove_cat->cat_ID);
+}
+
+//加入
+$case=[];
+$case_cats=get_categories("child_of=14");
+array_push($case,"14");
+foreach ($case_cats as $case_cat){
+    array_push($case,$case_cat->cat_ID);
+}
+
+
+
+
+if(in_category($product)){
+    include(TEMPLATEPATH.'/template-category/cat-product.php');
+}
+else if(in_category($case)){
+    include(TEMPLATEPATH.'/template-category/cat-case.php');
+}
+else if(in_category($reslove)){
+    include(TEMPLATEPATH.'/template-category/cat-reslove.php');
+}
+else if(in_category($news)){
+    include(TEMPLATEPATH.'/template-category/cat-news.php');
+}
+
+else{
+    include(TEMPLATEPATH.'/template-category/cat-default.php');
+}
+
+
+
+
+?>
+
