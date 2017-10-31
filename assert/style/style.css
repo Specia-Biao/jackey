@@ -69,3 +69,37 @@
 }
 
 
+.footer{
+    background:#111;
+}
+
+.jumbotron{
+    color:#fff;
+}
+
+
+
+/*
+*   微定制 bespoke
+*/
+
+.design-icon{
+    background: url(../images/bespoke/dz_bg6.png) no-repeat center;
+    background-size: contain;
+}
+.design-icon span{
+    color:#c9aa40;
+    padding:0 .1rem;
+}
+
+.bespoke-form{
+    background:url(../images/bespoke/dz_bg2.jpg);
+}
+
+.bespoke-form .desgin-tips{
+    font-size: 14px;
+    color: #4a4d66;
+    text-align: center;
+    padding-top: 8px;
+}
+

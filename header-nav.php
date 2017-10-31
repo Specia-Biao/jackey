@@ -28,19 +28,22 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="collapse navbar-collapse ml-5" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
+                        <?php
+                            $menus=theme_nav_menu("primary");
+                            foreach ($menus as $key=>$menu):?>
+                                <li class="nav-item <?php echo ($key==0)?"active":"";?>">
+                                    <a class="nav-link" href="<?php echo $menu->url;?>">
+                                        <span><?php echo $menu->name;?></span>
+                                    </a>
+                                    <a class="nav-link en d-none" href="<?php echo $menu->url;?>">
+                                       <?php echo $menu->description;?>
+                                    </a>
+                                </li>
+                        <?php endforeach;?>
                     </ul>
-                    <form class="form-inline mt-2 mt-lg-0">
+                    <form class="form-inline ml-4 mt-2 mt-lg-0">
                         <input class="form-control mr-sm-4 search-input" type="search" placeholder="Search" aria-label="Search">
                     </form>
                 </div>
