@@ -48,11 +48,9 @@ get_header("nav")?>
                         <input type="text" class="form-control form-control-lg" placeholder="您的联系电话">
                     </div>
                     <div class="form-inline">
-                        <select class="col-md-5 col-sm-12 form-control form-control-lg mt-2" name="" id="">
-                            <option value="">内蒙古自治区</option>
+                        <select id="input_province" class="col-md-5 col-sm-12 form-control form-control-lg mt-2" name="" id="">
                         </select>
-                        <select class="col-md-5 offset-md-2 col-sm-12 form-control form-control-lg mt-2" name="" id="">
-                            <option value="">选择省份</option>
+                        <select id="input_city" class="col-md-5 offset-md-2 col-sm-12 form-control form-control-lg mt-2" name="" id="">
                         </select>
                     </div>
                     <div class="form-group mt-4 mb-2">
@@ -149,5 +147,35 @@ get_header("nav")?>
 
 
 <?php get_footer(); ?>
+<script type="text/javascript" src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/script/city/pdata.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var html = "<option value=''>== 请选择 ==</option>"; $("#input_city").append(html);
+        $.each(pdata,function(idx,item){
+            if (parseInt(item.level) == 0) {
+                html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+            }
+        });
+        $("#input_province").append(html);
 
+        $("#input_province").change(function(){
+            if ($(this).val() == "") return;
+            $("#input_city option").remove();
+            var code = $(this).find("option:selected").attr("exid");
+            code = code.substring(0,2);
+            var html = "<option value=''>== 请选择 ==</option>";
+            $("#input_area").append(html);
+            $.each(pdata,function(idx,item){
+                if (parseInt(item.level) == 1 && code == item.code.substring(0,2)) {
+                    html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+                }
+            });
+            $("#input_city").append(html);
+        });
+        //绑定
+        $("#input_province").val("广东省");
+        $("#input_province").change();
+        $("#input_city").val("深圳市");
+    });
+</script>
 
