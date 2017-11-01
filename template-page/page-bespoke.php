@@ -147,10 +147,12 @@ get_header("nav")?>
 
 
 <?php get_footer(); ?>
+
+
 <script type="text/javascript" src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/script/city/pdata.js"></script>
 <script type="text/javascript">
     $(function () {
-        var html = "<option value=''>== 请选择 ==</option>"; $("#input_city").append(html);
+        var html = "<option value=''>请选择</option>"; $("#input_city").append(html);
         $.each(pdata,function(idx,item){
             if (parseInt(item.level) == 0) {
                 html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
@@ -163,7 +165,7 @@ get_header("nav")?>
             $("#input_city option").remove();
             var code = $(this).find("option:selected").attr("exid");
             code = code.substring(0,2);
-            var html = "<option value=''>== 请选择 ==</option>";
+            var html = "<option value=''>请选择</option>";
             $("#input_area").append(html);
             $.each(pdata,function(idx,item){
                 if (parseInt(item.level) == 1 && code == item.code.substring(0,2)) {

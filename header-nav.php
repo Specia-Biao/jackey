@@ -43,9 +43,9 @@
                                 </li>
                         <?php endforeach;?>
                     </ul>
-                    <form class="form-inline ml-4 mt-2 mt-lg-0">
-                        <input class="form-control mr-sm-4 search-input" type="search" placeholder="Search" aria-label="Search">
-                    </form>
+<!--                    <form class="form-inline ml-4 mt-2 mt-lg-0">-->
+<!--                        <input class="form-control mr-sm-4 search-input" type="search" placeholder="Search" aria-label="Search">-->
+<!--                    </form>-->
                 </div>
                 </div>
             </nav>
