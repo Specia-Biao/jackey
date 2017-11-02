@@ -11,6 +11,8 @@
     <meta name="description" content="<?php echo get_post_meta("16","description",true);?>">
     <link href="<?php echo get_bloginfo("stylesheet_directory","display")?>/assert/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo get_bloginfo("stylesheet_directory","display")?>/assert/style/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/script/jqzoom/jqzoom.css" rel="stylesheet" type="text/css"/>
+
 
     <!--[if lt IE 9]>
         <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>

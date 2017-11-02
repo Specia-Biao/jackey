@@ -7,8 +7,8 @@
  */
 //产品
 $product=[];
-$product_cats=get_categories("child_of=4");
-array_push($product,"4");
+$product_cats=get_categories("child_of=2");
+array_push($product,"2");
 foreach ($product_cats as $product_cat){
     array_push($product,$product_cat->cat_ID);
 }

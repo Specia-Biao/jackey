@@ -17,174 +17,99 @@ foreach ($cats as $cat) {
         break;
     }
 }
-print_r($catId);
 $cat = get_category($catId); ?>
 <?php get_header("nav"); ?>
 
-<!--main start-->
-<div class="product_body product_info_body">
-    <div class="pro_show">
 
-
-        <?php
-            if (have_posts()):?>
-
-        <div class="w1220">
-            <div class="bread"> <a href="/">首页</a> > <a href="">产品中心</a> > <?php the_title();?> </div>
-            <div class="proshow_con clearfix">
-                <dl class="clearfix">
-                    <dt class="f-l" id="pic_box"> <div class="img"><img src="<?php echo get_characterized_img("$id");?>" alt="" style="width:100%;" /></div> </dt>
-                    <dd class="f-r">
-                        <h1><?php the_title();?></h1>
-                        <div class="text_b clearfix">
-                            <?php
-                                $texings=get_post_meta("$id","特性");
-                                foreach ($texings as $texing):?>
-                                    <span><?php echo $texing;?></span>
-                                    <?php endforeach;?>
-                            </div>
-                        <h3 class="tit">技术指标<span>Technical Specifications</span></h3>
-                        <div class="text_t clearfix">
-                            <p class="t"> <span><?php echo get_post_meta("$id","产品厚度",true);?></span><span><?php echo get_post_meta("$id","耐磨层厚度",true);?></span></p>
-                            <p class="t"> <span><?php echo get_post_meta("$id","卷长",true);?></span><span><?php echo get_post_meta("$id","卷宽",true);?></span> </p>
-                            <p class="t"> <span><?php echo get_post_meta("$id","产品原料",true);?></span></p>
-                            <p class="t"> <span><?php echo get_post_meta("$id","防火性能",true);?></span></p>
-                        </div>
-                        <h3 class="tit">运营色<span>Operations color</span></h3>
-                        <div class="se_list">
-                            <ul class="clearfix">
-                                <?php
-                                    get_array_img("$id");
-                                    foreach ($gallery as $img): ?>
-                                        <li><a href="javascript:void(0)"><img src="<?php echo $img->url;?>" alt=""/></a></li>
-                                    <?php endforeach;?>
-                            </ul>
-                            <div class="tc_sekuai">
-                                <?php
-                                    get_array_img("$id");
-                                    foreach ($gallery as $img): ?>
-                                        <div class="img"><img src="<?php echo $img->url;?>" alt="" /></div>
-                                <?php endforeach;?>
-                            </div>
-                        </div>
-                    </dd>
-                </dl>
-            </div>
-        </div>
-
-        <?php endif;?>
-    </div>
-    <div class="proshow_div">
-        <div class="w1220">
-            <div class="list_con">
-                <ul class="clearfix">
-                    <li class="cur"><a href="#chanpintedian">产品特点</a></li>
-                    <li><a href="#chanpincanshu">产品参数</a></li>
-                    <li><a href="#xiangguanchanpin">相关产品</a></li>
-<!--                    <li><a href="#xiangguanzixun">相关资讯</a></li>-->
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="proshow_div2">
-        <div class="w1220">
-
-           <?php echo get_post("$id")->post_content;?>
-
-            <div class="list_btn" id="xiangguanchanpin">
-                <p style="margin-bottom: 20px;">
-				<span style="font-size:24px">
-					<span style="font-family:arial,helvetica,sans-serif">
-						<span style="color:#7c7365">相关产品 | Related Products</span>
-					</span>
-				</span>
-                </p>
-                <ul class="chanpin clearfix">
+<?php while(have_posts()):the_post(); ?>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-7 col-sm-12">
+                <div class="w-100">
+                    <a href="<?php echo get_characterized_img("$id")?>"><img src="<?php echo get_characterized_img("$id")?>" alt="" rel="<?php echo get_characterized_img("$id")?>" class="jqzoom" /></a>
+                </div>
+                <ul class="nav navbar" id="thumblist">
+                    <li class="tb-selected col img_thumb"><div class=""><a href="javascript:void(0);"><img src="images/01_small.jpg" mid="images/01_mid.jpg" big="images/01.jpg"></a></div></li>
                     <?php
-                    query_posts("cat=$catId&order=desc&showposts=5");
-                    while (have_posts()) : the_post();
-                        $single_id=get_the_ID();
-                        if ($single_id==$id1) continue;?>
-                        <li>
-                            <a href="<?php the_permalink();?>">
-                                <div class="img"><img src="<?php echo get_characterized_img("$single_id");?>" alt="" /></div>
-                                <div class="text clearfix"><span><?php the_title();?></span></div>
-                            </a>
-                        </li>
-                    <?php endwhile;wp_reset_query();?>
+                    get_gallery("$id");
+                    foreach ($gallery as $img):?>
+                        <li class="col img_thumb"><div class=""><a href="javascript:void(0);"><img class="w-100" src="<?php echo $img->url;?>" mid="<?php echo $img->url;?>" big="<?php echo $img->url;?>"></a></div></li>
+                    <?php endforeach;?>
                 </ul>
-                <a href="#" class="cp_more"></a> </div>
-<!--            <div class="list_btn" id="xiangguanzixun">-->
-<!--                <p style="margin-bottom: 20px;">-->
-<!--                    <span style="font-size:24px">-->
-<!--                        <span style="font-family:arial,helvetica,sans-serif">-->
-<!--                            <span style="color:#7c7365">相关资讯 | Relevant Information</span>-->
-<!--                        </span>-->
-<!--                    </span>-->
-<!--                </p>-->
-<!--                <ul class="list clearfix">-->
-<!--                    <div class="more_height"></div>-->
-<!--                    <div class="more_center clearfix">-->
-<!--                        <a href="" class="more">查看更多</a>-->
-<!--                    </div>-->
-<!--            </div>-->
+            </div>
+
+            <div class="col-md-5 col-sm-12">
+                <h4><?php the_title();?></h4>
+                <div class="w-100"><?php the_excerpt();?></div>
+                <div>分类：<a href="<?php echo home_url()."?cat=$catId";?>"><?php echo $cats[0]->cat_name;?></a></div>
+                <div><?php echo get_post_meta("$id","产品描述",true);?></div>
+                <div class="mt-4 mb-4">
+                    <a class="btn btn-warning" href="/">联系我们</a>
+                </div>
+                <div>
+                    <!-- JiaThis Button BEGIN -->
+                    <div class="jiathis_style">
+                        <a class="jiathis_button_qzone"></a>
+                        <a class="jiathis_button_tsina"></a>
+                        <a class="jiathis_button_tqq"></a>
+                        <a class="jiathis_button_weixin"></a>
+                        <a class="jiathis_button_renren"></a>
+                        <a class="jiathis_button_xiaoyou"></a>
+                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                        <a class="jiathis_counter_style"></a>
+                    </div>
+                    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+                    <!-- JiaThis Button END -->
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="container mt-5">
+        <h4 class="mb-4">产品详情</h4>
+        <div class="product-detail">
+            <?php the_content();?>
+        </div>
+    </div>
+    <?php endwhile;?>
+
+
+    <div class="container mt-4">
+        <h4 class="text-center">您可能会感兴趣</h4>
+        <div class="row">
+            <?php
+            $cat_ID=$cat->cat_ID;
+            query_posts("cat=$cat_ID&order=desc&showposts=4");
+            while (have_posts()) : the_post(); ?>
+                <div class="col-md-3 col-sm-12">
+                    <div><img width="w-100" src="<?php get_characterized_img("$id");?>" alt=""></div>
+                    <div class="text-center"><?php the_title();?></div>
+                </div>
+            <?php endwhile;wp_reset_query(); ?>
+            <div class="col-md-3 col-sm-12">
+                <div><img src="<?php  ?>" alt=""></div>
+            </div>
+        </div>
+    </div>
 
 
 
+<?php get_footer(); ?>
+
+<script type="text/javascript" src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/script/jqzoom/jqzoom.js"></script>
 
 
-
-<?php
-get_footer(); ?>
 <script type="text/javascript">
-    $('.se_list ul').slick({
-        dots:false,
-        arrows:true,
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
+    $(document).ready(function(){
+        $(".jqzoom").imagezoom();
+        $(".img_thumb").click(function(){
+            //增加点击的li的class:tb-selected，去掉其他的tb-selecte
+            $(this).addClass("tb-selected").siblings().removeClass("tb-selected");
+            //赋值属性
+            $(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+            $(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+        });
     });
-
-    $('#pic_box').slick({
-        dots:true,
-        arrows:false,
-        infinite: true,
-        slidesToShow: 1
-    });
-
-    $(".se_list li a").click(function(e){
-        $(".tc_sekuai").show().find("div img").attr("src", $(this).find("img").attr("src"));
-        $(this).parent().addClass("cur").siblings().removeClass("cur");
-        e.stopPropagation();
-    });
-    $("body").click(function(){
-        $(".tc_sekuai").hide();
-    });
-
-</script>
-<script type="text/javascript">
-    var fuc = document.querySelector('.fuchuang');
-    var tanc = document.querySelector('.tchu');
-    var num = 1;
-    fuc.onclick = function() {
-        if(num == 1) {
-            this.style.right = 0 + 'px';
-            tanc.style.right = -200 + 'px';
-            tanc.style.top = 400 + 'px';
-            num = num + 1;
-
-        }else{
-            this.style.right = 200 + 'px';
-            tanc.style.right = 0 + 'px';
-            num = num - 1;
-        }
-    }
-
 </script>
 
 
