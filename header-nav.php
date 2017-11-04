@@ -11,17 +11,20 @@
             <div class="row">
                 <div class="site-name col-8"><?php echo bloginfo("name");?></div>
                 <div class="top-header col-4 d-flex justify-content-end">
-                        <span class="text-right mr-2"><a href="/">实例页面1</a></span>
-                        <span class="text-right mr-2"><a href="/">实例页面2</a></span>
-                        <span class="text-right mr-2"><a href="/">实例页面3</a></span>
+                        <span class="text-right mr-2 wb">
+                            <a href="#">微博</a>
+                        </span>
+                        <span class="text-right mr-2 gzh">
+                            <a href="#">公众号</a>
+                        </span>
+                        <span class="text-right mr-2 tel"><a href="/">联系电话</a></span>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-
     <div class="header-menu">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-dark navbar-expand-lg">
                 <div class="container">
                 <a class="navbar-brand d-none d-sm-block mr-5" href="/"><img src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/images/logo.png" alt=""></a>
                 <a class="navbar-brand d-block d-sm-none" href="/"><img src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/images/m_logo.png" alt=""></a>
@@ -29,22 +32,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul id="header" class="navbar-nav nav col-md-10">
+                    <ul id="home-menu" class="navbar-nav nav col-md-9">
                         <?php
                             $menus=theme_nav_menu("primary");
                             foreach ($menus as $key=>$menu):?>
-                                <li class="tit nav-item <?php echo ($key==0)?"active":"";?>">
-                                    <a class="nav-link" href="<?php echo $menu->url;?>" rel="<?php echo $menu->description;?>"><?php echo $menu->name;?></a>
+                                <li class="mt-2 <?php echo ($key==0)?"active":"";?>">
+                                    <a class="" href="<?php echo $menu->url;?>">
+                                        <span class="out"><?php echo $menu->name;?></span>
+                                        <span class="over"><?php echo $menu->description;?></span>
+                                    </a>
                                 </li>
                         <?php endforeach;?>
                     </ul>
-                    <form class="mr-4 mt-2 mt-lg-0 col-md-2">
-                        <input class="form-control search-input rounded-0 col-md-12" type="search" placeholder="Search" aria-label="Search">
+                    <form action="<?php echo home_url( "/" );?>" class="mt-2 mt-lg-0 col-md-3 nav-search position-relative">
+                        <input type="hidden" name="cat" value="2">
+                        <input class="form-control search-input rounded-0" name="s" id="s" type="search" placeholder="请输入产品名称" aria-label="Search">
+                        <input type="submit" class="submitBtn position-absolute" />
                     </form>
                 </div>
                 </div>
             </nav>
     </div>
 </header>
+
 
 <!--header end-->

@@ -26,9 +26,11 @@
 		'primary'    => __( '主菜单', 'jackey' ),
 		'top' => __( '顶部菜单', 'jackey' ),
 		'footer' => __( '底部菜单', 'jackey' ),
+		'product' => __( '产品菜单', 'jackey' ),
+		'bespoke' => __( '微定制', 'jackey' ),
 		'link' => __( '友情链接', 'jackey' ),
 		'join' => __( '加盟菜单', 'jackey' ),
-		'news' => __( '新闻菜单', 'jackey' ),
+		'news' => __( '新闻菜单', 'jackey' )
     ) );
     
     add_theme_support( 'html5', array(

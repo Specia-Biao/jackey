@@ -13,7 +13,7 @@ $id=get_the_ID();
 get_header("nav")?>
 
 <div class="brand">
-    <div class="jumbotron" style="background-image:url(<?php echo get_characterized_img($id);?>)">
+    <div class="jumbotron rounded-0" style="background-image:url(<?php echo get_characterized_img($id);?>)">
         <div class="container">
             <h1 class="display-3">Hello, world!</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -39,11 +39,11 @@ get_header("nav")?>
             <?php endforeach;?>
         </div>
         <div class="brand-1 mt-5">
-            <div class="h3  justify-content-center">意式时尚·实木家居</div>
-            <div class="h6  justify-content-center">打造国际顶级的时尚家居品牌</div>
+            <div class="h3 text-center"><?php echo get_post("227")->post_title;?></div>
+            <div class="text-center title-text mt-2 mb-4"><span class="pl-md-5 pr-md-5"><?php echo get_post("227")->post_excerpt;?></span></div>
             <div class="mt-4" style="background:#333;">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                    <?php echo get_post("227")->post_content;?>
                 </div>
             </div>
         </div>
@@ -64,18 +64,11 @@ get_header("nav")?>
         </div>
     </div>
 
-    <div class="jumbotron" style="background-image:url(<?php echo get_characterized_img($id);?>)">
+    <div class="jumbotron rounded-0" style="background-image:url(<?php echo get_characterized_img($id);?>)">
         <div class="container clearfix">
-            <p class="lead">
-                卡诺尼克 Cistonica.G
-                意大利新锐家具设计师设计师
-                简约中 遇见时代之声
-                创造间 遇见心之归所</p>
+            <p class="lead"><?php echo get_post("229")->post_title;?></p>
             <hr class="my-4 float-left" style="border-top: 1px solid rgba(1000,100,110,.9);width: 100px;">
-            <p class="float-left">古老的艺术之都——意大利，诞生过无数浪漫的艺术传奇。进入二十一世纪，米兰时尚的崛起使新生代设计师有了更大的舞台。
-                卡诺尼克，生于意大利，自幼热爱设计，在意大利家具传统工艺领域与设计领域专注学习多年，虽年轻已经深得意大利家具的精髓，
-                俨然成为意大利新生设计师中最卓越的代表，短短几年已在业内积累起良好的声誉，由他与金永亮合作推出的意式新锐时尚品牌
-                ——钛马迪正是其代表之作。</p>
+            <p class="float-left"><?php echo get_post("229")->post_content;?></p>
         </div>
     </div>
 
@@ -182,30 +175,6 @@ get_header("nav")?>
     <div class="container">
         <div class="h3 mt-4 mb-4 text-center"><?php echo get_post("80")->post_title;?></div>
         <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <figure class="card">
-                    <img class="w-100" src="<?php echo get_bloginfo("stylesheet_directory");?>/assert/images/brand/news1.jpg" alt="">
-                    <figcaption class="card-body">
-                        <div class="card-text" style="color:#333;"><?php echo $img->title;?></div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <figure class="card">
-                    <img class="w-100" src="<?php echo get_bloginfo("stylesheet_directory");?>/assert/images/brand/news1.jpg" alt="">
-                    <figcaption class="card-body">
-                        <div class="card-text" style="color:#333;"><?php echo $img->title;?></div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <figure class="card">
-                    <img class="w-100" src="<?php echo get_bloginfo("stylesheet_directory");?>/assert/images/brand/news1.jpg" alt="">
-                    <figcaption class="card-body">
-                        <div class="card-text" style="color:#333;"><?php echo $img->title;?></div>
-                    </figcaption>
-                </figure>
-            </div>
             <div class="col-md-4 col-sm-12">
                 <figure class="card">
                     <img class="w-100" src="<?php echo get_bloginfo("stylesheet_directory");?>/assert/images/brand/news1.jpg" alt="">

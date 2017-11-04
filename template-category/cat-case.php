@@ -62,12 +62,12 @@ if ($cat->parent==4){
         <div class="col-md-6 col-sm-12" style="background:#f8f8f8;">
             <h4><?php the_title();?></h4>
             <?php
-                $tags=get_post_meta("$id","标签");
-                if (!empty($tags)):?>
+            $tags=get_post_meta("$id","标签");
+            if (!empty($tags)):?>
                 <div class="pb-2" style="border-bottom:1px solid #e6e6e6;">
                     <span>标签</span>
                     <?php foreach ($tags as $tag):?>
-                    <span style="padding: 3px 15px;font-size: 14px;background: #ffffff;margin: 0 5px;"><?php echo $tag;?></span>
+                        <span style="padding: 3px 15px;font-size: 14px;background: #ffffff;margin: 0 5px;"><?php echo $tag;?></span>
                     <?php endforeach;?>
                 </div>
             <?php endif;?>

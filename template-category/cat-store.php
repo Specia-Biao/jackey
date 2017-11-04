@@ -19,18 +19,18 @@ get_header("nav"); ?>
 
 
 <div class="container mt-4">
-    <h4 class="text-center">门店查询</h4>
-    <h6 class="text-center">晒家分享 见证生活中美学</h6>
+    <div class="h3 text-center"><?php echo get_post("231")->post_title;?></div>
+    <div class="text-center title-text mt-2 mb-4"><span class="pl-md-5 pr-md-5"><?php echo get_post("231")->post_excerpt;?></span></div>
     <div class="mt-3">
         <form action="<?php the_permalink();?>" class="form-inline row">
             <div class="form-group col-md-4 col-sm-12">
-                <select id="input_province" class="form-control w-100" name="" id=""></select>
+                <select id="input_province" class="form-control w-100" name=""></select>
             </div>
             <div class="form-group col-md-4 col-sm-12">
-                <select id="input_city" class="form-control w-100" name="" id=""></select>
+                <select id="input_city" class="form-control w-100" name="" ></select>
             </div>
             <div class="form-group col-md-4 col-sm-12">
-                <button type="submit" class="btn btn-secondary w-100">Submit</button>
+                <button type="submit" class="btn btn-secondary w-100">查询</button>
             </div>
         </form>
     </div>
@@ -40,8 +40,8 @@ get_header("nav"); ?>
 
 
 <div class="container mt-5">
-    <h3 class="text-center">钛马迪全国旗舰店</h3>
-    <div class="text-center mb-4">意式经典，简约，彰显轻奢极致</div>
+    <div class="h3 text-center"><?php echo get_post("233")->post_title;?></div>
+    <div class="text-center title-text mt-2 mb-4"><span class="pl-md-5 pr-md-5"><?php echo get_post("233")->post_excerpt;?></span></div>
     <?php
         if(have_posts()):
         while(have_posts()):the_post();?>
@@ -52,7 +52,7 @@ get_header("nav"); ?>
                 <div class="card-body">
                     <h4 class="card-title"><?php the_title();?></h4>
                     <div class="card-text">
-                        <a class="btn btn-warning" href="javascript:void(0);">免费预约体验</a>
+                        <a class="btn btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">免费预约体验</a>
                         <a class="btn btn-secondary" href="tel:<?php echo get_post_meta("$id","电话",true);?>">
                             <?php echo get_post_meta("$id","电话",true);?>
                         </a>
@@ -63,6 +63,41 @@ get_header("nav"); ?>
     </div>
     <?php endwhile;endif;?>
 </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">预约体验</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">姓名:</label>
+                        <input type="text" class="form-control" name="name" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="tel-text" class="col-form-label">电话:</label>
+                        <input type="text" class="form-control" name="tel" id="tel-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" id="modal-submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 
 <?php get_footer(); ?>
@@ -99,6 +134,40 @@ get_header("nav"); ?>
     });
 </script>
 
+
+<script>
+    $(function () {
+        $('#modal-submit').click(function(e){
+            e.preventDefault();
+            submitCheck();
+        });
+        function submitCheck(){
+            var username = $('input[name=name]').val();
+            if(username==""){
+                alert('请填写姓名!');
+                return false;
+            }
+            var phone = $('input[name=tel]').val();
+            if(phone==""){
+                alert('请填写电话!');
+                return false;
+            }
+            var id="198";
+            $.post("/wp-comments-post.php",
+                {
+                    author:username,
+                    comment:"预约体验------联系人："+username+" "+
+                    "电话:"+phone+" ",
+                    comment_post_ID:id,
+                    comment_parent:0,
+                },
+                function(data,status){
+                    alert("提交成功");
+                    $('#exampleModal').modal('hide');
+                });
+        }
+    });
+</script>
 
 
 

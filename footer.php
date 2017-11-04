@@ -4,9 +4,9 @@
         <div class="row pt-4">
             <div class="col-md-4 col-sm-12"><img class="w-100" src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/images/b_logo.png" alt=""></div>
             <div class="col-md-4 offset-md-4 col-sm-12 text-center">
-                <span class="h3">Contact Us!</span>
-                <a href="">
-                    <span class=""></span>
+                <div class="h3  d-inline-block" style="vertical-align:top">Contact Us!</div>
+                <a class="btn btn-light btn-md" href="/">
+                    <img style="vertical-align:-2px"  src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/images/1_1_1.png" alt="">
                     <span>在线咨询</span>
                 </a>
             </div>
@@ -14,63 +14,49 @@
         <div class="row pt-4">
             <div class="col-md-8 d-none d-sm-block">
                 <div class="row">
-                    <div class="col text-center">
-                        <div><span>关于我们</span></div>
-                        <ul class="navbar-nav nav">
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                        </ul>
-                    </div>
-                    <div class="col text-center">
-                        <div><span>关于我们</span></div>
-                        <ul class="navbar-nav nav">
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                        </ul>
-                    </div>
-                    <div class="col text-center">
-                        <div><span>关于我们</span></div>
-                        <ul class="navbar-nav nav">
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                        </ul>
-                    </div>
-                    <div class="col text-center">
-                        <div><span>关于我们</span></div>
-                        <ul class="navbar-nav nav">
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">1</a></li>
-                        </ul>
-                    </div>
+                    <?php
+                        $footer_menus=theme_nav_menu("footer");
+                        foreach ($footer_menus as $f_menu):?>
+                        <div class="col text-center">
+                            <div><span class="font-size-14"><?php echo $f_menu->name;?></span></div>
+                            <?php if (!empty($f_menu->submenu)):
+                                $submenus=$f_menu->submenu; ?>
+                            <ul class="navbar-nav nav">
+                                <?php
+                                    foreach ($submenus as $submenu): ?>
+                                        <li class="nav-item"><a class="nav-link font-size-12" href="<?php echo $submenu->url;?>"><?php echo $submenu->name;?></a></li>
+                                <?php endforeach;endif;?>
+                            </ul>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="row text-center">
                     <div class="col-md-4">
                         <img src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/images/weixin.jpg" alt="">
+                        <div class="text-center wx-text">扫一扫立刻关注</div>
                     </div>
                     <div class="col-md-8">
-                        <h6>中国区门店查询</h6>
-                        <div style="font-size: 12px;">
-                            <p>服务电话：010-67381199 / 贵宾服务专线</p>
-                            <p>服务电话：010-67381199 / 贵宾服务专线</p>
-                            <p>服务电话：010-67381199 / 贵宾服务专线</p>
-                            <p>服务电话：010-67381199 / 贵宾服务专线</p>
-                        </div>
+                        <?php echo get_post("215")->post_content;?>
+<!--                        <h6 class="text-left pl-2">中国区门店查询</h6>-->
+<!--                        <div style="font-size: 12px;">-->
+<!--                            <div class="mb-2">服务电话：010-67381199 / 贵宾服务专线</div>-->
+<!--                            <div class="mb-2">服务电话：010-67381199 / 贵宾服务专线</div>-->
+<!--                            <div class="mb-2">服务电话：010-67381199 / 贵宾服务专线</div>-->
+<!--                            <div class="mb-2">服务电话：010-67381199 / 贵宾服务专线</div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
         <div class="row pt-2 mt-4" style="border-top: 1px solid #999;">
-            <p style="font-size:12px;">COPYRIGHT &copy; 2002-2017 钛马迪国际家居 400-698-9688 ALL RIGHTS RESERVED 京ICP备12048715号</p>
+            <div class="pb-4" style="font-size:12px;">
+                <?php echo get_post("212")->post_content;?>&nbsp;&nbsp;&nbsp;
+                <a class="font-size-14" href="http://www.miitbeian.gov.cn/" rel="external nofollow" target="_blank">
+                    <?php echo get_option( 'zh_cn_l10n_icp_num' );?>
+                </a>
+            </div>
         </div>
     </div>
 </div>

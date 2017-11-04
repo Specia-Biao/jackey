@@ -29,16 +29,16 @@ get_header("nav")?>
                 <div class="col-md-12 col-sm-12">
                     <form action="">
                         <div class="form-group">
-                            <input class="form-control form-control-lg" type="text" placeholder="公司">
+                            <input class="form-control form-control-lg" type="text" name="company" placeholder="公司">
                         </div>
                         <div class="form-group">
-                            <input class="form-control form-control-lg" type="text" placeholder="姓名">
+                            <input class="form-control form-control-lg" type="text" name="name" placeholder="姓名">
                         </div>
                         <div class="form-group">
-                            <input class="form-control form-control-lg" type="text" placeholder="手机">
+                            <input class="form-control form-control-lg" type="text" name="tel" placeholder="手机">
                         </div>
                         <div class="form-group">
-                            <button class="col-md-12 col-sm-12 btn btn-primary btn-lg">提交</button>
+                            <button id="submit" class="col-md-12 col-sm-12 btn btn-primary btn-lg">提交</button>
                         </div>
                     </form>
                 </div>
@@ -65,7 +65,7 @@ get_header("nav")?>
             <?php endforeach;?>
         </div>
         <div class="text-center mt-4 mb-4">
-            <button class="btn btn-outline-dark btn-lg">查看更多作品</button>
+            <a href="<?php echo home_url()."?cat=2";?>" class="btn btn-outline-dark btn-lg">查看更多作品</a>
         </div>
     </div>
 
@@ -92,35 +92,37 @@ get_header("nav")?>
 
 
 <?php get_footer(); ?>
-<script type="text/javascript" src="<?php echo get_bloginfo("stylesheet_directory", "display") ?>/assert/script/city/pdata.js"></script>
-<script type="text/javascript">
-    $(function () {
-        var html = "<option value=''>== 请选择 ==</option>"; $("#input_city").append(html);
-        $.each(pdata,function(idx,item){
-            if (parseInt(item.level) == 0) {
-                html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
-            }
-        });
-        $("#input_province").append(html);
 
-        $("#input_province").change(function(){
-            if ($(this).val() == "") return;
-            $("#input_city option").remove();
-            var code = $(this).find("option:selected").attr("exid");
-            code = code.substring(0,2);
-            var html = "<option value=''>== 请选择 ==</option>";
-            $("#input_area").append(html);
-            $.each(pdata,function(idx,item){
-                if (parseInt(item.level) == 1 && code == item.code.substring(0,2)) {
-                    html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
-                }
-            });
-            $("#input_city").append(html);
+<script>
+    $(function () {
+        $('#submit').click(function(e){
+            e.preventDefault();
+            submitCheck();
         });
-        //绑定
-        $("#input_province").val("广东省");
-        $("#input_province").change();
-        $("#input_city").val("深圳市");
+        function submitCheck(){
+            var username = $('input[name=name]').val();
+            if(username==""){
+                alert('请填写姓名!');
+                return false;
+            }
+            var phone = $('input[name=tel]').val();
+            if(phone==""){
+                alert('请填写电话!');
+                return false;
+            }
+            var id="198";
+            $.post("/wp-comments-post.php",
+                {
+                    author:username,
+                    comment:"云设计----公司："+username+" "+
+                    "姓名:"+username+" "+
+                    "电话:"+phone+" ",
+                    comment_post_ID:id,
+                    comment_parent:0,
+                },
+                function(data,status){
+                    alert("提交成功");
+                });
+        }
     });
 </script>
-
